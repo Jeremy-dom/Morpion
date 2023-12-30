@@ -1,0 +1,11 @@
+This project has the goal to learn game development in C++ with visual gameplay.
+In the project, we will create a Morpion (or Tic-Tac-Toe) from scratch.
+This project will use CMake to compile the project.
+
+It will be seperated in 3 directories :
+    - src -> All the .cpp files
+    - inc -> All the .h files
+    - build -> All the files needed by CMake to compile the project
+
+To build the project :
+    - Use "cmake build" 
