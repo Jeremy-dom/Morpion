@@ -8,10 +8,10 @@ LDIR =lib
 
 LIBS=-lm
 
-_DEPS = morpion.h Plateau.h
+_DEPS = morpion.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = morpion.cpp Plateau.cpp
+_OBJ = morpion.cpp
 OBJ = $(patsubst %,$(SDIR)/%,$(_OBJ))
 
 
