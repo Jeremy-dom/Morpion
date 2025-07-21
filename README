@@ -1,11 +1,14 @@
 This project has the goal to learn game development in C++ with visual gameplay.
 In the project, we will create a Morpion (or Tic-Tac-Toe) from scratch.
-This project will use CMake to compile the project.
+This project will use CMake to compile the project and the library SFML for the graphics.
 
 It will be seperated in 3 directories :
     - src -> All the .cpp files
     - inc -> All the .h files
     - build -> All the files needed by CMake to compile the project
+To build the project : 
+    - Create a folder build
+    - Enter cmake -B build/
+    - Enter cmake --build build/
 
-To build the project :
-    - Use "cmake build" 
+Then you can go to the build directory and use make to compile if you change some files.
