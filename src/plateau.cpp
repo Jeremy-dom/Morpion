@@ -1,6 +1,5 @@
 #include "Plateau.h"
 
-
 Plateau::Plateau(sf::Vector2u windowSizeu)
 {
     float posX, posY;
@@ -26,12 +25,12 @@ Plateau::Plateau(sf::Vector2u windowSizeu)
         if(mod2i == 0) //Ligne Verticale
         {
             ligne.setSize(sf::Vector2f(5, sizePlateau.y));
-            ligne.setPosition(posX + nbligne*sizePlateau.x/3, posY);
+            ligne.setPosition({posX + nbligne*sizePlateau.x/3, posY});
         }
         else //Ligne Horizontale
         {
             ligne.setSize(sf::Vector2f(sizePlateau.x, 5));
-            ligne.setPosition(posX, posY + nbligne*sizePlateau.y/3);
+            ligne.setPosition({posX, posY + nbligne*sizePlateau.y/3});
         }
         m_lignePlateau.push_back(ligne);
     }
