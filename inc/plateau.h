@@ -13,12 +13,16 @@ class Plateau
 
         int getNbLigne();
         int getNbCircle();
+        int getNbCross();
 
         sf::RectangleShape getContourPlateau();
         sf::RectangleShape getLignePlateau(int index);
         sf::CircleShape getCircle(int index);
+        sf::RectangleShape getCrossLine1(int index);
+        sf::RectangleShape getCrossLine2(int index);
 
         int setCircle(sf::Vector2f pos);
+        int setCross(sf::Vector2f pos);
 
 
     private :
@@ -28,6 +32,8 @@ class Plateau
         std::vector<sf::CircleShape> m_circle;
         std::vector<sf::RectangleShape> m_crossLine1;
         std::vector<sf::RectangleShape> m_crossLine2;
+
+        sf::Vector2f assignPos(sf::Vector2f initialPos);
 };
 
 
