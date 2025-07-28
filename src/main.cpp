@@ -1,10 +1,13 @@
 #include <iostream>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "main.h"
 #include "plateau.h"
 
 int main(int, char**){
+    int tourDuJoueur = 1;
+    int winner = 0;
     sf::Vector2i localPosition; 
     sf::Vector2f forigin((float)0, (float)0);
 
@@ -20,13 +23,16 @@ int main(int, char**){
     {
         std::cerr << "Error on the font arial.ttf" << std::endl;
     }
-    // choix de la police à utiliser
-    sf::Text text(font);
 
-    // choix de la chaîne de caractères à afficher
-    text.setString("Hello world");
+    std::string sInfo("Au tour du Joueur 1");
+    sf::Text info(font);
+    info.setString(sInfo); 
+    info.setPosition({500, 50});
+    window.draw(info);
 
-    text.setPosition(sf::Vector2f({(float)0, (float)0}));
+    window.draw(board.setRestartButton());
+
+    window.draw(board.setRestartText(font));
 
     sf::Vector2f posCircle;
     bool leftClick;
@@ -86,16 +92,53 @@ int main(int, char**){
 
         if (leftClick)
         {
-            if(board.setCross(posLeftClick) == -1)
-                std::cout << "Clic en dehors du plateau" << std::endl;
+            if(winner == 0)
+            {
+                if(board.setSymbol(posLeftClick, tourDuJoueur) != -1)
+                {
+                    winner = board.checkWinner();
+                    if(winner != 0)
+                    {
+                        std::cout << "Joueur "<< winner << " a gagné" << std::endl;
+                    }
+                    else if(tourDuJoueur == 1)
+                    {
+                        tourDuJoueur++;
+                        sInfo = "Au tour du Joueur 2";
+                        info.setString(sInfo); 
+                        window.draw(info);
+                    }
+                    else if(tourDuJoueur == 2)
+                    {
+                        tourDuJoueur--;
+                        sInfo = "Au tour du Joueur 1";
+                        info.setString(sInfo); 
+                        window.draw(info);
+                    }
+
+                }
+            }
+            else if (board.clickReset(posLeftClick))
+            {
+                board.resetGame();
+                window.clear();
+                window.draw(board.getContourPlateau());
+                for(int i = 0; i < board.getNbLigne(); i++)
+                {
+                    window.draw(board.getLignePlateau(i));
+                }
+                window.draw(board.setRestartButton());
+                window.draw(board.setRestartText(font));
+                tourDuJoueur = 1;
+                winner = 0; 
+                sInfo = "Au tour du Joueur 1";
+                info.setString(sInfo); 
+                window.draw(info);
+
+            }
+            
         }
 
-        if(rightClick)
-        {
-            if(board.setCircle(posRightClick) == -1)
-                std::cout << "Clic en dehors du plateau" << std::endl;
-        }
-        
         window.display();
     }
     

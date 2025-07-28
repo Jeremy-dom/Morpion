@@ -21,8 +21,15 @@ class Plateau
         sf::RectangleShape getCrossLine1(int index);
         sf::RectangleShape getCrossLine2(int index);
 
-        int setCircle(sf::Vector2f pos);
-        int setCross(sf::Vector2f pos);
+        int setSymbol(sf::Vector2f pos, int joueur);
+        sf::RectangleShape setRestartButton();
+        sf::Text setRestartText(sf::Font font);
+
+
+
+        int checkWinner();
+        int clickReset(sf::Vector2f pos);
+        int resetGame();
 
 
     private :
@@ -32,8 +39,13 @@ class Plateau
         std::vector<sf::CircleShape> m_circle;
         std::vector<sf::RectangleShape> m_crossLine1;
         std::vector<sf::RectangleShape> m_crossLine2;
+        sf::RectangleShape restartButton;
 
-        sf::Vector2f assignPos(sf::Vector2f initialPos);
+        sf::Vector2f assignPos(sf::Vector2f initialPos, int symbol);
+        int setCircle(sf::Vector2f pos);
+        int setCross(sf::Vector2f pos);
+
+        int symbolPlateau[3][3] = {{},{}};
 };
 
 
